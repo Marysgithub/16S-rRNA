@@ -265,7 +265,13 @@ QIIME uses a 16S alignment Lane mask (Lane, D.J. 1991) by default. After filteri
  结果保存在/otus/pynast_aligned_seqs文件夹下，也就是刚才我们看到的后缀为aligned_pfiltered.fasta格式的文件
  
  
-
+Step 6. Build a phylogenetic tree #构建进化树
+The filtered alignment file produced in the directory otus/pynast_aligned_seqs/ is then used to build a phylogenetic tree using a tree-building program.
+#过滤好的aligned_pfiltered.fasta格式的文件用来构建进化树
+The Newick format tree file is written to rep_set.tre, which is located in the otus/ directory . This file can be viewed in tree visualization software, and is necessary for UniFrac diversity measurements and other phylogenetically-aware analyses (described below). 
+#用的是Newick格式的建树文件，文件名：rep_set.tre, 就在otus/根目录下，是 UniFrac多样性分析的必要文件
+The tree obtained can be visualized with programs such as FigTree, which was used to visualize the phylogenetic tree stored in rep_set.tre:
+#对Newick文件可视化的看树软件有三种，其中之一是FigTree
 
 
 
