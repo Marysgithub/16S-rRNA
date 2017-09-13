@@ -1,6 +1,6 @@
 数据路径：valid/eachsample
 
-数据格式：
+数据格式为已经拆分后的reads (Demultiplex and quality filter reads) ：
 
 trim.INq_a.fq
 
@@ -8,3 +8,37 @@ trim.INq_a.fq
 GTAGGGAATATTCCACAATGAACGAAAGTTTGATGGAGCGACACAGCGTGCAGGATGAAGGTCTTAGGATCGTAAACTGCTGTTATAAGAGAAGAACAGTTGTAATAGGAAATGATTACAACCTGACGGTATCTTATCAGAAAGCACCGGCTAACTATGTGCCAGCAGCCGCGGTAATACATAGGGTGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGTTCGTAGGCGGTTTATTAAGTCGTAAGTCAAAGCCTGAAGCTCAACTTCAGCTCGCTTAGGTGACTGGTAGACTAGAGTTATAGAGAGATTAGGGGAACTCCATGTGAAGCGGTGGAATGCGTAGATATATGGAAGAACACCAATGGCGAAGGCACCTAATTGGCTATACACTGACGCTCAGGAACGAAAGCGTGGGGAGCAAACAGGATTAGAAACCCGGGTAGTCC
 +
 GGGGGGGGGGGGGGGGGFFGGGGCEGGGFGGGFGGFFGGGGEEGGGDFG@FFGGGG@EGGGGGC<FFGGGFGFGGGGGGGGFGFGGGGGGGGGFGGFGGGGGGF<<FGCADFCGGCGGGGGFEDGGGG::FFCFGEACFFGGFGFG8DCF+@CFGGGCGG9AGGGGF,:3:EEG>CCGBFGFGGGGBE5CFGG5=#EF=@C?<EGGF#C?C5EDD8CDGGGG:78BFFDF#GGGFEA5=@F#8#FFFFFFFGFFFCCF@F?F:9FC@?F??FFBGCEDDA6=++GFDFFFDD@GFD+7FC8CGFD9@9DD8FEGGGCCGE8E@9EGGE>EC>DGGEGGGGGFDGFDAGFFEGGGFCF@ECGGGGDGGGGGGGFB,@FFGGF89GGGGGGGGGGGGGGGGGGGGGGGFFFCGGEGGGFFDGGGFGGGGGGGGGF@7GGGGGGF?GGFFGG
+
+从下面的步骤开始
+## De novo OTU picking
+
+Here we will be running the pick_de_novo_otus.py workflow, which runs a series of other scripts automatically. 
+This workflow consists of the following steps: #采用pick_de_novo_otus.py流程进行OTU拼接
+
+Pick OTUs based on sequence similarity within the reads (pick_otus.py) #相似序列聚类产生OTU
+
+Pick a representative sequence for each OTU (pick_rep_set.py) #给每个OTU选择代表性的序列
+
+Assign taxonomy to OTU representative sequences (assign_taxonomy.py) #为OTU的代表性序列分配 属
+
+Align OTU representative sequences (align_seqs.py) #对OUT代表性序列进行比对
+
+Filter the alignment (filter_alignment.py) #过滤比对
+
+Build a phylogenetic tree (make_phylogeny.py) #构建进化树
+
+Make the OTU table (make_otu_table.py) #构建OTU表
+
+Using the output from split_libraries.py (seqs.fna), run the following command: 
+
+pick_de_novo_otus.py -i split_library_output/seqs.fna -o otus #输入拆分好的序列，用这个命令一步到位了？ SO EASY?
+
+
+1)   Convert FASTQ files to FASTA and QUAL files (将valid.fq格式的文件转换为fa)
+
+
+
+
+
+参考资料：
+https://sites.google.com/site/knightslabwiki/qiime-workflow
