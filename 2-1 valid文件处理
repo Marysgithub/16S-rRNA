@@ -181,7 +181,7 @@ Since alignment is one of the most computationally intensive bottlenecks in the 
 After aligning the sequences, a log file and an alignment file are created in the directory otus/pynast_aligned_seqs/.                    
 #比对结果在 otus/pynast_aligned_seqs目录下
 
-1. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_log.txt 
+4.1）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_log.txt 
 */log文件格式
 candidate sequence ID	   candidate nucleotide count	errors	 template ID	     BLAST percent identity to template	candidate      nucleotide count post-NAST
 denovo0       INq_a_53067	                     450		           4406763	      88.00	                                            450
@@ -191,7 +191,7 @@ denovo100 INq_a_41174	450		651100	83.80	450
 denovo1000 INq_a_40333	450		72076	81.80	450
 denovo1001 INq_a_61135	450		527288	83.10	450
 
-2. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_aligned.fasta 
+4.2）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_aligned.fasta 
 */代表序列比对上的文件格式
 >denovo0 INq_a_53067 1..450
 -------------------------------------------------------------------------------------
@@ -227,7 +227,7 @@ A----G-T-A-T---G-ATG-TG-A-AA-GC--CC-CGG-G---------------------------------------
 -------------------CT-G-G-GG-AG------C-TGC-A-T-T--------G--GT-A-A-C-T-G-GGG--G-G-C
 /*
 
-3. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_aligned_pfiltered.fasta 
+4.3）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_aligned_pfiltered.fasta 
 */过滤后的代表序列？比对的文件格式
 >denovo0
 -----------------------------------------------------GTGGGGAATCTTCGGCAATGGACGAAAGTCTG
@@ -238,6 +238,33 @@ AATTCCATGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGGTGGCGAAGGCGGCCTTCTGGGCTGTCACTGAC
 GGCGCGAAAGCGTGGGGAGCAAACAGGATTAGAAACCCTTGTAGTCC--------------------------------------
 ---------------------------------
 */
+
+4.4）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_failures.fasta 
+*/还有比对失败的~~两条序列~~
+>denovo2057 INq_a_50852
+GTCTAGAAATTTGGGCAATGGGCGAAAGCCTGACCCAGCGACGCCGCGTGAGGGCTGAAGTTCTTCGGAATGTAAACCTCTGTTG
+AGGGGAACGATAATGACGGTACCCCTCGAGGAAGCCTCGGCTAACTCCGTGCCAGCCGCCGCGGTAACACGGAGGAGGCAAGCGT
+TGTCCGGAATCACTGGGCGTAAAGGGTGTGTCGGTATCCAGATGGGTCAGGTGTGAAATCCAACAGCTACACTGTTGACGTGCAT
+CTGAAACTATCGAGATTGAGGACGTGAGGGGAGAGGGGAACTCGCGGTGTAGCGGTAGAAGGGGTGGATATCGCGAGGAATACCG
+ATGGCGAAGGCGGCTCTCTAGTGTGTTCCTCTTATGAGGAGCCAATTGAGTTTATCCTTCGGGTTATGATTATTTGGTCCTGACA
+CTGAAACACGAAAGCTGGGGGAGCGAACGGGATTAGAAACCCCAGTAGTCC
+>denovo2635 INq_a_56324
+GTCGAGAATCTTCCACAATGGGGGCAACCCTGATGGAGCGACGCCGCGTGACTGAAGAAGCTCTTCGGAGTGTAAAAGTCTTTTC
+TGGGGGAAAAATACCCAGCATCATGTTTTTGTCTTACTTAAATTTGACGAAAATATGATGCTGGGAATGATGGTACCCCAGGAAT
+AAGCAACGACTAACTTCGTGCCAGCAGTCGCGGTAATACGAAGGTTGCAAGCGTTTCCCGGAATTATTGGGCGTAAAGCGTTCGT
+AGGCGGTTTATTAAGTCTTAAGTCAAAGCCGGAAGCTCAACTTCAGCTCGCGTAGGATACTGGTAGACTAGAGTTATAGAGAGAT
+TAGGGGAACTCCATGGGAAGCGGTGGAATGCGTAGATATATGGAAGAACACCAATGGCGAAGGCACCTAATTGGCTATACACTGA
+CGCTCAGGAACGAAAGCGTGGGGAGCAAACAGGATTAGATACCCCGGTAGTCC
+
+Step 5. Filter the alignment #过滤比对
+
+Before inferring a phylogenetic tree relating the sequences, it is beneficial to filter the sequence alignment to remove columns comprised of only gaps, and locations known to be excessively variable. 
+#构建进化树前要将fna文件中带有空白的列，以及带有过度变量的位点滤除
+QIIME uses a 16S alignment Lane mask (Lane, D.J. 1991) by default. After filtering, a filtered alignment file is created in the directory otus/pynast_aligned_seqs/.
+#这里用的是16s Lane mask （算法？）作为默认值
+ 结果保存在/otus/pynast_aligned_seqs文件夹下，也就是刚才我们看到的后缀为aligned_pfiltered.fasta格式的文件
+ 
+ 
 
 
 
