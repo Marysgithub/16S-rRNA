@@ -34,7 +34,7 @@ Using the output from split_libraries.py (seqs.fna), run the following command:
 pick_de_novo_otus.py -i split_library_output/seqs.fna -o otus #输入拆分好的序列，用这个命令一步到位了？ SO EASY?
 
 
-1)   Convert FASTQ files to FASTA and QUAL files (将valid.fq格式的文件转换为fa)
+## 1)   Convert FASTQ files to FASTA and QUAL files (将valid.fq格式的文件转换为fa)
 
 eg: convert_fastaqual_fastq.py -c fastq_to_fastaqual -f seqs.fastq -o fastaqual/   (convert from a fastq file to a fasta file and a qual file)
 
@@ -101,6 +101,52 @@ Options:
 
     -f FASTA_FILE_PATH, --fasta_file_path=FASTA_FILE_PATH
                         Input FASTA or FASTQ file. [REQUIRED]
+                       
+## De novo OTU picking                      
+eg:  pick_de_novo_otus.py -i split_library_output/seqs.fna -o otus           
+我的：pick_de_novo_otus.py -i fastaqual/trim.INq_a.fna -o otus
+
+The results of pick_de_novo_otus.py are in otus/, and a description of the steps performed and the results follow:
+# otu的运算结果被一揽子放入了otus文件夹，开始分析都是些什么结果
+
+Step 1. Pick OTUs based on sequence similarity within the reads¶ # 基于序列相似性在reads里挑出OTUs
+
+At this step, all of the sequences from all of the samples will be clustered into Operational Taxonomic Units (OTUs) based on their sequence similarity.
+#聚类出OTUS
+OTUs in QIIME are clusters of sequences, frequently intended to represent some degree of taxonomic relatedness. 
+#QIIME里的OTUs是一簇簇的序列， 常代表了不同程度的 种类的相关性
+For example, when sequences are clustered at 97% sequence similarity, each resulting cluster is typically thought of as representing a species. 
+#例如，序列相似性为97%时， 每个聚类结果就代表了一个物种
+This model and the current techniques for picking OTUs are known to be flawed, however, in that 97% OTUs do not match what humans have called species for many microbes. 
+#现有技术还不成熟， 有些即便聚出来也和已知的微生物物种对不上
+Determining exactly how OTUs should be defined, and what they represent, is an active area of research. See here for more information about OTU picking with QIIME.
+#16S 软件未来还有开发空间： 提高OTUs的分辨率及其代表物种
+
+
+Step 2. Pick a representative sequence for each OTU #每个OTU挑选出一个代表性的序列
+
+Since each OTU may be made up of many related sequences, we will pick a representative sequence from each OTU for downstream analysis. 
+#每个OTU都有许多相关的序列，我们将从每个OTU中挑选出一个代表性序列
+This representative sequence will be used for taxonomic identification of the OTU and phylogenetic alignment. 
+#这些代表性序列将被用于种类鉴定和进化树比对
+QIIME uses the OTU file created above and extracts a representative sequence from the fasta file by one of several methods.
+#选取代表性序列有很多方法
+In the otus/rep_set/ directory, QIIME has a fasta file seqs_rep_set.fasta containing one representative sequence for each OTU. 
+#在 otus/rep_set/ 目录下， 后缀为rep_set.fasta的文件中包含了一个代表性序列
+In this fasta file, the sequence has been renamed with the OTU identifier, and the additional information on the header line reflects the sequence used as the representative:
+在这个fna文件中，序列按OTU识别进行了重命名， 
+
+这里查看文件：(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/rep_set$ head trim.INq_a_rep_set.fasta 
+
+格式为：
+*/
+>denovo0 INq_a_53067
+GTGGGGAATCTTCGGCAATGGACGAAAGTCTGATCGAGCAACGCCGCGTGAGTGAAGAAGGCTTTCGGATTGTAAAACTCTGTTGTTAGAGAAGAACAAGGGTGAGAGTAACTGCTCCTCCATTGACGGTATCTAACCAGAAAGCAACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTACTGGGCGTACAGCGAGCGCAGGCGGTTACTTAAGTATGATGTGAAAGCCCCGGGCTCAACTGGGGAGCTGCATTGGTAACTGGGGGGCTTGAGTGTAGGAGAGGAGGGTGGAATTCCATGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGGTGGCGAAGGCGGCCTTCTGGGCTGTCACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGAAACCCTTGTAGTCC
+/*
+
+                       
+                       
+                       
 
 
 
