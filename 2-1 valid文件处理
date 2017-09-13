@@ -273,7 +273,98 @@ The Newick format tree file is written to rep_set.tre, which is located in the o
 The tree obtained can be visualized with programs such as FigTree, which was used to visualize the phylogenetic tree stored in rep_set.tre:
 #对Newick文件可视化的看树软件有三种，其中之一是FigTree
 
+下载安装FigTree, 用java打开API，导入tre图，得到的是一张硕大无比的黑乎乎的无根树？问号脸~
 
+Step 7. Make the OTU table #制表
+
+Using taxonomic assignments (step 3) and the OTU map (step 1) QIIME assembles a table of OTU abundances in each sample with taxonomic identifiers for each OTU.
+#使用步骤3中的比对结果和步骤1里的OTU图，制作OTU丰度表。
+The result of this step is otu_table.biom, which is located in the otus/ directory. For more information about the OTU table format, which is stored in the BIOM format, please see here.
+# 丰度表otu_table.biom在otu根目录下。
+
+biom文件怎么看？
+用summarize_taxa_through_plots.py脚本
+Usage: summarize_taxa_through_plots.py [options] {-i/--otu_table_fp OTU_TABLE_FP -o/--output_dir OUTPUT_DIR}
+
+[] indicates optional input (order unimportant)
+{} indicates required input (order unimportant)
+
+
+The steps performed by this script are: Summarize OTU by Category (optional, pass -c); Summarize Taxonomy; and Plot Taxonomy Summary
+
+Example usage: 
+Print help message and exit
+ summarize_taxa_through_plots.py -h
+
+Plot taxa summaries for all samples: #绘制所有样本的种属信息
+ summarize_taxa_through_plots.py -o taxa_summary -i otu_table.biom -m Fasting_Map.txt
+ 
+ 我的：(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus$ summarize_taxa_through_plots.py -o taxa_summary -i otu_table.biom -m Fasting_Map.txt
+
+提示Fasting_Map.txt不存在
+
+Plot taxa summaries on a categorical basis: #在分类基础上绘制种属总信息Alternatively, the user can supply a mapping_category, where the OTU is summarized based on a sample metadata category
+ summarize_taxa_through_plots.py -o taxa_summary_by_treatment -i otu_table.biom -m Fasting_Map.txt -c Treatment
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -v, --verbose         Print information during execution -- useful for
+                        debugging [default: False]
+  -p PARAMETER_FP, --parameter_fp=PARAMETER_FP
+                        path to the parameter file, which specifies changes to
+                        the default behavior. See
+                        http://www.qiime.org/documentation/file_formats.html
+                        #qiime-parameters. [if omitted, default values will be
+                        used]
+  -m MAPPING_FP, --mapping_fp=MAPPING_FP
+                        path to the mapping file [REQUIRED if passing -c]
+  -f, --force           Force overwrite of existing output directory (note:
+                        existing files in output_dir will not be removed)
+                        [default: none]
+  -w, --print_only      Print the commands but don't call them -- useful for
+                        debugging [default: False]
+  -c MAPPING_CATEGORY, --mapping_category=MAPPING_CATEGORY
+                        Summarize OTU table using this category. [default:
+                        none]
+  -s, --sort            Sort the OTU Table [default: False]
+
+  REQUIRED options:
+    The following options must be provided under all circumstances.
+
+    -i OTU_TABLE_FP, --otu_table_fp=OTU_TABLE_FP
+                        the input otu table [REQUIRED]
+    -o OUTPUT_DIR, --output_dir=OUTPUT_DIR
+                        the output directory [REQUIRED]
+
+噗，下面有官方查看方法：
+Summarize the OTU table
+To view summary statistics of the OTU table, run:
+
+eg: biom summarize-table -i otus/otu_table.biom
+
+我的： (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ biom summarize-table -i otus/otu_table.biom 
+
+The summary shows that there are relatively few sequences in this tutorial example, but the sequences present are fairly evenly distributed among the 9 microbial communities:
+
+结果解读：
+
+Num samples: 1
+Num observations: 3130
+Total count: 33084
+Table density (fraction of non-zero values): 1.000
+
+Counts/sample summary:
+ Min: 33084.0
+ Max: 33084.0
+ Median: 33084.000
+ Mean: 33084.000
+ Std. dev.: 0.000
+ Sample Metadata Categories: None provided
+ Observation Metadata Categories: taxonomy
+
+Counts/sample detail:
+INq: 33084.0
 
 
 
