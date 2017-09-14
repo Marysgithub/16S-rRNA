@@ -1,0 +1,87 @@
+Step 4. Align OTU representative sequences # 对OTU代表序列的比对
+
+Alignment of the OTU representative sequences and phylogeny inference is necessary only if phylogenetic metrics such as UniFrac will be subsequently invoked. 
+#OTU比对的代表性序列和进化相关性是必要条件。当且仅当UniFrac这个系统进化指标被激活？
+Alignments can either be generated de novo using programs such as MUSCLE, or through alignment to an existing alignment with tools like PyNAST. 
+#比对可以用MUSCLE或者PyNAST
+For small studies such as this tutorial, either method is possible. However, for studies involving many sequences (roughly, more than 1000), de novo aligners are very slow and alignment with PyNAST is necessary. 
+#对于数据量较小的研究，两种比对工具都可以。但是对于序列大于1000的， 从头比对就很慢，就需要选用PyNAST
+Since alignment is one of the most computationally intensive bottlenecks in the pipeline, large studies benefit greatly from parallelization of this task, which is possible with PyNAST.
+#比对是密集计算的瓶颈，PyNAST特别适合大数据
+After aligning the sequences, a log file and an alignment file are created in the directory otus/pynast_aligned_seqs/.                    
+#比对结果在 otus/pynast_aligned_seqs目录下
+
+4.1）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_log.txt 
+*/log文件格式
+candidate sequence ID	   candidate nucleotide count	errors	 template ID	     BLAST percent identity to template	candidate      nucleotide count post-NAST
+denovo0       INq_a_53067	                     450		           4406763	      88.00	                                            450
+denovo1 INq_a_52166	425		753182	82.80	425
+denovo10 INq_a_57368	450		95370	89.60	450
+denovo100 INq_a_41174	450		651100	83.80	450
+denovo1000 INq_a_40333	450		72076	81.80	450
+denovo1001 INq_a_61135	450		527288	83.10	450
+
+4.2）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_aligned.fasta 
+*/代表序列比对上的文件格式
+>denovo0 INq_a_53067 1..450
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+------------------------------G-TG---GG-G-A-ATC-TTCGG-C-AA-T-GG--AC-GA-A----A-G-TC-T-
+GA-TC-GA-GCAA-CGCC-G-CG-T---G-A-G--T--GA-A-G--A--A-G-G-CT-----TT-CG---------G-A-T-T-G
+-T--A---AA-A-CTC--------TG-TT-G-T--T-AGA----GA-A--G---AACAAGG---GTGA--G----A--G--TA-A
+---C----T-----GC-T-CCT-CCA-TT-GA-CG-GT-A-T-CT-A-AC-C---------AG-----------AAAGC-AAC-G
+G-C-TAA---C--T-ACGT--GCCA--G-C---A--GCCG---C-GG--TA-AT--AC---GT-AG-GTG-GCA-A-G-CG-TTG
+T-C-CGG-AA-TT-A--C-T--GGGC-GTA----CA-GCGA-GC--G-CA-G-G-C-G------------G--T-TA-C-T-T-A
+A----G-T-A-T---G-ATG-TG-A-AA-GC--CC-CGG-G--------------------------------------------
+------------------------CT-C-AA------------------------------------------------------
+-------------------CT-G-G-GG-AG------C-TGC-A-T-T--------G--GT-A-A-C-T-G-GGG--G-G-C
+/*
+
+4.3）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_aligned_pfiltered.fasta 
+*/过滤后的代表序列？比对的文件格式
+>denovo0
+-----------------------------------------------------GTGGGGAATCTTCGGCAATGGACGAAAGTCTG
+ATCGAGCAACGCCGCGTGAGTGAAGAAGGCTTTCGGATTGTAAAACTCTGTTGTTAGAGAAGCGGTATCTAACCAGAAAGCAACG
+GCTAAC-TACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTACTGGGCGTACAGCGAGCGCAGGCGGT
+TACTTAAGTATGATGTGAAAGCCCCGGGCTCAACTGGGGAG-CTCATTGGTAACTGGGGGGCTTGAGTGTAGGAGAGGAGGGTGG
+AATTCCATGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGGTGGCGAAGGCGGCCTTCTGGGCTGTCACTGACGCTGA
+GGCGCGAAAGCGTGGGGAGCAAACAGGATTAGAAACCCTTGTAGTCC--------------------------------------
+---------------------------------
+*/
+
+4.4）. (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/pynast_aligned_seqs$ more trim.INq_a_rep_set_failures.fasta 
+*/还有比对失败的~~两条序列~~
+>denovo2057 INq_a_50852
+GTCTAGAAATTTGGGCAATGGGCGAAAGCCTGACCCAGCGACGCCGCGTGAGGGCTGAAGTTCTTCGGAATGTAAACCTCTGTTG
+AGGGGAACGATAATGACGGTACCCCTCGAGGAAGCCTCGGCTAACTCCGTGCCAGCCGCCGCGGTAACACGGAGGAGGCAAGCGT
+TGTCCGGAATCACTGGGCGTAAAGGGTGTGTCGGTATCCAGATGGGTCAGGTGTGAAATCCAACAGCTACACTGTTGACGTGCAT
+CTGAAACTATCGAGATTGAGGACGTGAGGGGAGAGGGGAACTCGCGGTGTAGCGGTAGAAGGGGTGGATATCGCGAGGAATACCG
+ATGGCGAAGGCGGCTCTCTAGTGTGTTCCTCTTATGAGGAGCCAATTGAGTTTATCCTTCGGGTTATGATTATTTGGTCCTGACA
+CTGAAACACGAAAGCTGGGGGAGCGAACGGGATTAGAAACCCCAGTAGTCC
+>denovo2635 INq_a_56324
+GTCGAGAATCTTCCACAATGGGGGCAACCCTGATGGAGCGACGCCGCGTGACTGAAGAAGCTCTTCGGAGTGTAAAAGTCTTTTC
+TGGGGGAAAAATACCCAGCATCATGTTTTTGTCTTACTTAAATTTGACGAAAATATGATGCTGGGAATGATGGTACCCCAGGAAT
+AAGCAACGACTAACTTCGTGCCAGCAGTCGCGGTAATACGAAGGTTGCAAGCGTTTCCCGGAATTATTGGGCGTAAAGCGTTCGT
+AGGCGGTTTATTAAGTCTTAAGTCAAAGCCGGAAGCTCAACTTCAGCTCGCGTAGGATACTGGTAGACTAGAGTTATAGAGAGAT
+TAGGGGAACTCCATGGGAAGCGGTGGAATGCGTAGATATATGGAAGAACACCAATGGCGAAGGCACCTAATTGGCTATACACTGA
+CGCTCAGGAACGAAAGCGTGGGGAGCAAACAGGATTAGATACCCCGGTAGTCC
