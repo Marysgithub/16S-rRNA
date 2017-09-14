@@ -1,0 +1,25 @@
+Step 2. Pick a representative sequence for each OTU #每个OTU挑选出一个代表性的序列
+
+Since each OTU may be made up of many related sequences, we will pick a representative sequence from each OTU for downstream analysis. 
+#每个OTU都有许多相关的序列，我们将从每个OTU中挑选出一个代表性序列
+This representative sequence will be used for taxonomic identification of the OTU and phylogenetic alignment. 
+#这些代表性序列将被用于种类鉴定和进化树比对
+QIIME uses the OTU file created above and extracts a representative sequence from the fasta file by one of several methods.
+#选取代表性序列有很多方法
+In the otus/rep_set/ directory, QIIME has a fasta file seqs_rep_set.fasta containing one representative sequence for each OTU. 
+#在 otus/rep_set/ 目录下， 后缀为rep_set.fasta的文件中包含了一个代表性序列
+In this fasta file, the sequence has been renamed with the OTU identifier, and the additional information on the header line reflects the sequence used as the representative:
+在这个fna文件中，序列按OTU识别进行了重命名， 
+
+这里查看文件：(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/rep_set$ head trim.INq_a_rep_set.fasta 
+
+格式为：
+*/
+>denovo0 INq_a_53067
+GTGGGGAATCTTCGGCAATGGACGAAAGTCTGATCGAGCAACGCCGCGTGAGTGAAGAAGGCTTTCGGATTGTAAAACTCTGTTGTTAGAGAAGAACAAGGGTGAGAGTAACTGCTCCTCCATTGACGGTATCTAACCAGAAAGCAACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTACTGGGCGTACAGCGAGCGCAGGCGGTTACTTAAGTATGATGTGAAAGCCCCGGGCTCAACTGGGGAGCTGCATTGGTAACTGGGGGGCTTGAGTGTAGGAGAGGAGGGTGGAATTCCATGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGGTGGCGAAGGCGGCCTTCTGGGCTGTCACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGAAACCCTTGTAGTCC
+/*
+
+# Pick representative set command 
+pick_rep_set.py -i otus/uclust_picked_otus/trim.INq_a_otus.txt -f fastaqual/trim.INq
+_a.fna -l otus/rep_set//trim.INq_a_rep_set.log -o otus/rep_set//trim.INq_a_rep_set.f
+asta 
