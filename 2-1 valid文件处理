@@ -338,7 +338,7 @@ Options:
                         the output directory [REQUIRED]
 
 噗，下面有官方查看方法：
-Summarize the OTU table
+## Summarize the OTU table
 To view summary statistics of the OTU table, run:
 
 eg: biom summarize-table -i otus/otu_table.biom
@@ -365,6 +365,12 @@ Counts/sample summary:
 
 Counts/sample detail:
 INq: 33084.0
+
+Make an OTU network #构建OTU网络
+To create an OTU network, using the following command:
+
+eg. make_otu_network.py -m Fasting_Map.txt -i otus/otu_table.biom -o otus
+切换到项目目录下，激活qiime1,我的： 
 
 
 
