@@ -1,0 +1,13 @@
+Summarize communities by taxonomic composition #统计种属的构成
+You can group OTUs by different taxonomic levels (phylum, class, family, etc.) with the workflow script summarize_taxa_through_plots.py. 
+使用summarize_taxa_through_plots.py来按照不同的界门纲目分类
+Note that this process depends directly on the method used to assign taxonomic information to OTUS (see Assigning Taxonomy above):
+eg: summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary -m Fasting_Map.txt
+输入我的命令后报错。根据map文件，必须要大于6个样本。被自己坑了。昨天只做了一个INq_a的数据。没有跑其他的样本。
+解决方案：要么把其他样本也跑了。要么就是改map.
+
+我决定改map
+折腾一圈后再画分类图
+(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary/ -m otus/mapping_output/map20170914_1sample_corrected.txt 
+
+
