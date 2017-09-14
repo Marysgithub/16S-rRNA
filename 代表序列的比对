@@ -1,0 +1,27 @@
+Step 3. Assign taxonomy to OTU representative sequences #将OTU中的代表序列比对应到种属
+
+Next, taxonomy will be assigned to each representative sequence. 
+By default, QIIME uses the uclust consensus taxonomy classifier to attempt to assign taxonomy to each representative sequence resulting from step 2.
+#QIIME 默认uclust一致性种属分类将步骤2中的代表性序列分配到对应的种
+
+In the directory otus/uclust_assigned_taxonomy/, there will be a log file and a text file. 
+# 在路径otus/uclust_assigned_taxonomy中，有一个log文件和一个文本文件。
+The text file (which we refer to as an observation or OTU metadata file) contains a line for each OTU, 
+followed by the taxonomic assignment, the fraction of uclust hits that contained this taxonomic assignment, 
+and the number of uclust hits that were found.  
+#text文件每一行是一个OTU, 后面是被分配到哪些种属， 以及比中的数目
+For some OTUs, the assignment may be as specific as a bacterial species, while others may not be assignable at all (and will therefore be labeled as Unassigned). 
+#对于一些OTUs, 有些比对到特殊的菌种，有些则完全比对不上
+Below are the first few lines of an observation metadata file containing the results of uclust taxonomic assignment:      
+
+*/
+(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus/uclust_assigned_taxonomy$ more trim.INq_a_rep_set_tax_assignments.txt 
+denovo56	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Alteromona dales; f__OM60; g__; s__	1.00	3
+denovo58	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Legionellales; f__Legionellaceae; g__; s__	0.67	3
+denovo59	k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Alteromona dales; f__OM60; g__; s__	1.00	3
+denovo3059	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfobac terales; f__Desulfobacteraceae; g__Desulfococcus; s__	1.00	3
+/*
+
+# Assign taxonomy command 
+assign_taxonomy.py -o otus/uclust_assigned_taxonomy -i otus/rep_set//trim.INq_a_rep_
+set.fasta 
