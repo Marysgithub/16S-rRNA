@@ -1,0 +1,67 @@
+## 1)   Convert FASTQ files to FASTA and QUAL files (将valid.fq格式的文件转换为fa)
+
+eg: convert_fastaqual_fastq.py -c fastq_to_fastaqual -f seqs.fastq -o fastaqual/   (convert from a fastq file to a fasta file and a qual file)
+
+实践证明，暂时只能单条数据处理： convert_fastaqual_fastq.py -c fastq_to_fastaqual -f ./eachsample/trim.waterx_c.fq -o fastaqual/
+
+原来的fq长这样
+*/
+@INq_a_33261	M01929:278:000000000-AP4T5:1:1101:28156:19224 1:N:0:TCCCGA	orig_bc=GGTTGT	new_bc=GGTTGT	bc_diffs=0
+GTAGGGAATATTCCACAATGAACGAAAGTTTGATGGAGCGACACAGCGTGCAGGATGAAGGTCTTAGGATCGTAAACTGCTGTTATAAGAGAAGAACAGTTGTAATAGGAAATGATTACAACCTGACGGTATCTTATCAGAAAGCACCGGCTAACTATGTGCCAGCAGCCGCGGTAATACATAGGGTGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGTTCGTAGGCGGTTTATTAAGTCGTAAGTCAAAGCCTGAAGCTCAACTTCAGCTCGCTTAGGTGACTGGTAGACTAGAGTTATAGAGAGATTAGGGGAACTCCATGTGAAGCGGTGGAATGCGTAGATATATGGAAGAACACCAATGGCGAAGGCACCTAATTGGCTATACACTGACGCTCAGGAACGAAAGCGTGGGGAGCAAACAGGATTAGAAACCCGGGTAGTCC
++
+GGGGGGGGGGGGGGGGGFFGGGGCEGGGFGGGFGGFFGGGGEEGGGDFG@FFGGGG@EGGGGGC<FFGGGFGFGGGGGGGGFGFGGGGGGGGGFGGFGGGGGGF<<FGCADFCGGCGGGGGFEDGGGG::FFCFGEACFFGGFGFG8DCF+@CFGGGCGG9AGGGGF,:3:EEG>CCGBFGFGGGGBE5CFGG5=#EF=@C?<EGGF#C?C5EDD8CDGGGG:78BFFDF#GGGFEA5=@F#8#FFFFFFFGFFFCCF@F?F:9FC@?F??FFBGCEDDA6=++GFDFFFDD@GFD+7FC8CGFD9@9DD8FEGGGCCGE8E@9EGGE>EC>DGGEGGGGGFDGFDAGFFEGGGFCF@ECGGGGDGGGGGGGFB,@FFGGF89GGGGGGGGGGGGGGGGGGGGGGGFFFCGGEGGGFFDGGGFGGGGGGGGGF@7GGGGGGF?GGFFGG
+/*
+
+转换后的fna长这样：（给第一行改了名字，将+以后的删除了）
+*/
+>INq_a_33261
+GTAGGGAATATTCCACAATGAACGAAAGTTTGATGGAGCGACACAGCGTGCAGGATGAAGGTCTTAGGATCGTAAACTGCTGTTATAAGAGAAGAACAGTTGTAATAGGAAATGATTACAACCTGACGGTATCTTATCAGAAAGCACCGGCTAACTATGTGCCAGCAGCCGCGGTAATACATAGGGTGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGTTCGTAGGCGGTTTATTAAGTCGTAAGTCAAAGCCTGAAGCTCAACTTCAGCTCGCTTAGGTGACTGGTAGACTAGAGTTATAGAGAGATTAGGGGAACTCCATGTGAAGCGGTGGAATGCGTAGATATATGGAAGAACACCAATGGCGAAGGCACCTAATTGGCTATACACTGACGCTCAGGAACGAAAGCGTGGGGAGCAAACAGGATTAGAAACCCGGGTAGTCC
+/*
+
+fastaqual文件夹内文件一共为24个：
+ls -l|grep "^-"|wc -l
+24
+
+
+
+为了批量转换fq到fna，查看如下帮助文档，木有此功能,写了个loop脚本：multiple_convert_fq2fna.sh，不好用
+Example: Using the input files seqs.fna and seqs.qual, generate seqs.fastq in the fastq_files directory
+ convert_fastaqual_fastq.py -f seqs.fna -q seqs.qual -o fastq_files/
+
+Example: Using input seqs.fastq generate fasta and qual files in fastaqual directory
+ convert_fastaqual_fastq.py -c fastq_to_fastaqual -f seqs.fastq -o fastaqual
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -v, --verbose         Print information during execution -- useful for
+                        debugging [default: False]
+  -q QUAL_FILE_PATH, --qual_file_path=QUAL_FILE_PATH
+                        Required input QUAL file if converting to FASTQ.
+  -o OUTPUT_DIR, --output_dir=OUTPUT_DIR
+                        Output directory. Will be created if does not exist.
+                        [default: .]
+  -c CONVERSION_TYPE, --conversion_type=CONVERSION_TYPE
+                        type of conversion: fastaqual_to_fastq or
+                        fastq_to_fastaqual [default: fastaqual_to_fastq]
+  -a ASCII_INCREMENT, --ascii_increment=ASCII_INCREMENT
+                        The number to add (subtract if coverting from FASTQ)
+                        to the quality score to get the ASCII character (or
+                        numeric quality score). [default: 33]
+  -F, --full_fasta_headers
+                        Include full FASTA headers in output file(s) (as
+                        opposed to merely the sequence label). [default:
+                        False]
+  -b, --full_fastq      Include identifiers on quality lines in the FASTQ file
+                        (those beginning with a "+"). Irrelevant when
+                        converting from FASTQ. [default=False]
+  -m, --multiple_output_files
+                        Create multiple FASTQ files, one for each sample, or
+                        create multiple matching FASTA/QUAL for each sample.
+                        [default=False]
+
+  REQUIRED options:
+    The following options must be provided under all circumstances.
+
+    -f FASTA_FILE_PATH, --fasta_file_path=FASTA_FILE_PATH
+                        Input FASTA or FASTQ file. [REQUIRED]
