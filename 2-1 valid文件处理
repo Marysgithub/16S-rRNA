@@ -370,8 +370,39 @@ Make an OTU network #构建OTU网络
 To create an OTU network, using the following command:
 
 eg. make_otu_network.py -m Fasting_Map.txt -i otus/otu_table.biom -o otus
-切换到项目目录下，激活qiime1,我的： 
+切换到项目目录下，激活qiime1,发现没有map.txt,怎么办？自己做一个。
+我的：(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ make_otu_network.py -m otus/map20170914.txt -i otus/otu_table.biom -o otus/
+注意这行命令里的map20170914是没有经过验证的文件。下面验证后会给出一个corrected文件，用验证后的正确文件进行网络构建
 
+
+首先看barcode, 然后通过文献得到338F_806R的引物序列
+参考文献： https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5108805/
+trim.INq_a.fq 
+@INq_a_33261	M01929:278:000000000-AP4T5:1:1101:28156:19224 1:N:0:TCCCGA	orig
+_bc=GGTTGT	new_bc=GGTTGT	bc_diffs=0
+GTAGGGAATATTCCACAATGAACGAAAGTTTGATGGAGCGACACAGCGTGCAGGATGAAGGTCTTAGGATCGTAAACTGCTGTT
+ATAAGAGAAGAACAGTTGTAATAGGAAATGATTACAACCTGACGGTATCTTATCAGAAAGCACCGGCTAACTATGTGCCAGCAG
+CCGCGGTAATACATAGGGTGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGTTCGTAGGCGGTTTATTAAGTCGTAAGTCAA
+AGCCTGAAGCTCAACTTCAGCTCGCTTAGGTGACTGGTAGACTAGAGTTATAGAGAGATTAGGGGAACTCCATGTGAAGCGGTG
+GAATGCGTAGATATATGGAAGAACACCAATGGCGAAGGCACCTAATTGGCTATACACTGACGCTCAGGAACGAAAGCGTGGGGA
+GCAAACAGGATTAGAAACCCGGGTAGTCC
+
+
+转回头检验了自制map的有效性，
+(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop/otus$ validate_mapping_file.py -m map20170914.txt -o mapping_output
+
+发现生成目录下多了一个map20170914_corrected.txt文件，那就用这个文件来做network.
+我的命令：(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ make_otu_network.py -m otus/map20170914.txt -i otus/otu_table.biom -o otus/
+
+这样就会在otu目录下生成otu_networks文件夹
+将txt节点文件导入cytoscape，生成网络图，不过没看出什么来
+
+Summarize communities by taxonomic composition #统计种属的构成
+You can group OTUs by different taxonomic levels (phylum, class, family, etc.) with the workflow script summarize_taxa_through_plots.py. 
+使用summarize_taxa_through_plots.py来按照不同的界门纲目分类
+Note that this process depends directly on the method used to assign taxonomic information to OTUS (see Assigning Taxonomy above):
+eg: summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary -m Fasting_Map.txt
+我的:
 
 
 
