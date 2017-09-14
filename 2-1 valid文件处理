@@ -406,6 +406,8 @@ eg: summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary -m Fa
 解决方案：要么把其他样本也跑了。要么就是改map.
 
 我决定改map
+折腾一圈后再画分类图
+(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary/ -m otus/mapping_output/map20170914_1sample_corrected.txt 
 
 
 
