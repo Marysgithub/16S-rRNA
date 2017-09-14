@@ -1,0 +1,7 @@
+Step 5. Filter the alignment #过滤比对
+
+Before inferring a phylogenetic tree relating the sequences, it is beneficial to filter the sequence alignment to remove columns comprised of only gaps, and locations known to be excessively variable. 
+#构建进化树前要将fna文件中带有空白的列，以及带有过度变量的位点滤除
+QIIME uses a 16S alignment Lane mask (Lane, D.J. 1991) by default. After filtering, a filtered alignment file is created in the directory otus/pynast_aligned_seqs/.
+#这里用的是16s Lane mask （算法？）作为默认值
+ 结果保存在/otus/pynast_aligned_seqs文件夹下，也就是刚才我们看到的后缀为aligned_pfiltered.fasta格式的文件
