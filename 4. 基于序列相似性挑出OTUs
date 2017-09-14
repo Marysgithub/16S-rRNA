@@ -1,6 +1,9 @@
 ## De novo OTU picking                      
 eg:  pick_de_novo_otus.py -i split_library_output/seqs.fna -o otus           
 我的：pick_de_novo_otus.py -i fastaqual/trim.INq_a.fna -o otus
+以此类推，trim.INq_b.fna
+                  c.fna
+                  ...
 
 The results of pick_de_novo_otus.py are in otus/, and a description of the steps performed and the results follow:
 # otu的运算结果被一揽子放入了otus文件夹，开始分析都是些什么结果
