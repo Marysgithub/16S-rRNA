@@ -55,6 +55,8 @@ pick_de_novo_otus.py -i fastaqual/trim.waterx_c.fna -o otus/trim.waterx_c
 执行脚本：
 (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ sh script/pick_de_novo_otus.sh 
 
+执行完后可以直接跳转到9。 3-8为otu文件详解。
+
 
 参考资料：
 https://sites.google.com/site/knightslabwiki/qiime-workflow
