@@ -23,5 +23,6 @@ denovo3059	k__Bacteria; p__Proteobacteria; c__Deltaproteobacteria; o__Desulfobac
 /*
 
 # Assign taxonomy command 
+#单步执行命令如下，在本案例中不需要输入，已经集成在pick_de_novo_otus.py命令里了
 assign_taxonomy.py -o otus/uclust_assigned_taxonomy -i otus/rep_set//trim.INq_a_rep_
 set.fasta 
