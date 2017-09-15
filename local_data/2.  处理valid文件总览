@@ -38,18 +38,18 @@ pick_de_novo_otus.py -i split_library_output/seqs.fna -o otus #输入拆分好�
 (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ pick_de_novo_otus.py -i fastaqual/trim.INq_a.fna -o otus
 
 */
-pick_de_novo_otus.py -i fastaqual/trim.INq_a.fna -o otus
-pick_de_novo_otus.py -i fastaqual/trim.INq_b.fna -o otus
-pick_de_novo_otus.py -i fastaqual/trim.INq_c.fna -o otus
-pick_de_novo_otus.py -i fastaqual/trim.INx_x.fna -o otus
-pick_de_novo_otus.py -i fastaqual/trim.INq_x.fnb -o otus
-pick_de_novo_otus.py -i fastaqual/trim.INq_x.fnc -o otus
-pick_de_novo_otus.py -i fastaqual/trim.waterq_a.fna -o otus
-pick_de_novo_otus.py -i fastaqual/trim.waterq_a.fnb -o otus
-pick_de_novo_otus.py -i fastaqual/trim.waterq_a.fnc -o otus
-pick_de_novo_otus.py -i fastaqual/trim.waterx_a.fna -o otus
-pick_de_novo_otus.py -i fastaqual/trim.waterx_b.fna -o otus
-pick_de_novo_otus.py -i fastaqual/trim.waterx_c.fna -o otus
+pick_de_novo_otus.py -i fastaqual/trim.INq_a.fna -o otus/trim.INq_a
+pick_de_novo_otus.py -i fastaqual/trim.INq_b.fna -o otus/trim.INq_b
+pick_de_novo_otus.py -i fastaqual/trim.INq_c.fna -o otus/trim.INq_c
+pick_de_novo_otus.py -i fastaqual/trim.INx_a.fna -o otus/trim.INx_a
+pick_de_novo_otus.py -i fastaqual/trim.INx_b.fna -o otus/trim.INx_b
+pick_de_novo_otus.py -i fastaqual/trim.INx_c.fna -o otus/trim.INx_c
+pick_de_novo_otus.py -i fastaqual/trim.waterq_a.fna -o otus/trim.waterq_a
+pick_de_novo_otus.py -i fastaqual/trim.waterq_b.fna -o otus/trim.waterq_b
+pick_de_novo_otus.py -i fastaqual/trim.waterq_c.fna -o otus/trim.waterq_c
+pick_de_novo_otus.py -i fastaqual/trim.waterx_a.fna -o otus/trim.waterx_a
+pick_de_novo_otus.py -i fastaqual/trim.waterx_b.fna -o otus/trim.waterx_b
+pick_de_novo_otus.py -i fastaqual/trim.waterx_c.fna -o otus/trim.waterx_c
 /*
 
 执行脚本：
