@@ -11,3 +11,35 @@ eg: summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary -m Fa
 (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary/ -m otus/mapping_output/map20170914_1sample_corrected.txt 
 
 
+
+
+20170918 
+今天实际上还在折腾mapping文件。header的整体搬迁是不二法门。
+最后屏幕上终于出现了
+
+
+然而barcode的长度只有6bp.本来思路是12个样本在mapping的指导下拆分，然而barcode应该是12位，所以没拆成。
+
+只好先用一个样本来进行下一步了Summarize communities by taxonomic composition
+因为只有一个样本，所以没法显示柱形比较图。提示只能显示pie图。
+不过高兴的是生成的文件里总算有L2,L3,L4等分类了。
+
+
+
+You can group OTUs by different taxonomic levels (phylum, class, family, etc.) with the workflow script summarize_taxa_through_plots.py. 
+Note that this process depends directly on the method used to assign taxonomic information to OTUS (see Assigning Taxonomy above):
+
+summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary -m Fasting_Map.txt
+我的：(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ summarize_taxa_through_plots.py -i otus/otu_table.biom -o taxa_summary -m mapping.txt
+
+The script will generate new tables at various taxonomic levels (we’ll refer to these as taxonomy tables, which are different than OTU tables). 
+For example, the class-level table is located at taxa_summary/otu_table_L3.txt. Each taxonomy table contains the relative abundances of taxa within each sample:
+比如，L3代表class水平的分类。
+Domain, Kingdom, Phylum, Class纲, Order, Family, Genus, Species,
+
+
+
+待解决问题：
+1. 弄明白12位的barcode到底在哪看，从解析文件里可以看到6bp， 而且不同样本的barcode都不一样
+2. 在第一步解决的基础上进行split样本拆分，从而能形成可比较的柱形图。
+3. 暂时可以先用单样本把后面的多样性分析走完。了解过程先。
