@@ -1,0 +1,35 @@
+Make a taxonomy heatmap
+
+QIIME supports generating heatmap images of BIOM tables 
+(e.g., OTU tables or the taxonomy tables generated in the previous step) with make_otu_heatmap.py. 
+Let’s create a heatmap illustrating class-level abundances on a per-sample basis, where samples are sorted by whether they are from control or fasted mice:
+核心文件BIOM又出场了。
+可以用它来绘制class水平的热图。
+关键脚本： make_otu_heatmap.py
+
+我只有一个样本。。。可能没法弄。。先试试吧T
+make_otu_heatmap.py -i taxa_summary/otu_table_L3.biom -o taxa_summary/otu_table_L3_heatmap.pdf -c Treatment -m Fasting_Map.txt
+我的：(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ make_otu_heatmap.py -i taxa_summary/otu_table_L3.biom -o taxa_summary/otu_table_L3_heatmap.pdf -c Treatment -m mapping.txt 
+
+
+果然没出来，报错了：
+Traceback (most recent call last):
+  File "/home/mary/anaconda3/envs/qiime1/bin/make_otu_heatmap.py", line 4, in <module>
+    __import__('pkg_resources').run_script('qiime==1.9.1', 'make_otu_heatmap.py')
+  File "/home/mary/anaconda3/envs/qiime1/lib/python2.7/site-packages/pkg_resources/__init__.py", line 742, in run_script
+    self.require(requires)[0].run_script(script_name, ns)
+  File "/home/mary/anaconda3/envs/qiime1/lib/python2.7/site-packages/pkg_resources/__init__.py", line 1503, in run_script
+    exec(code, namespace, namespace)
+  File "/home/mary/anaconda3/envs/qiime1/lib/python2.7/site-packages/qiime-1.9.1-py2.7.egg-info/scripts/make_otu_heatmap.py", line 254, in <module>
+    main()
+  File "/home/mary/anaconda3/envs/qiime1/lib/python2.7/site-packages/qiime-1.9.1-py2.7.egg-info/scripts/make_otu_heatmap.py", line 193, in main
+    map_sample_ids = zip(*metadata[0])[0]
+    
+IndexError: list index out of range
+
+
+
+
+A PDF file is created as taxa_summary/otu_table_L3_heatmap.pdf. 
+The first four samples are from fasted mice and the last five are from controls. 
+This clearly illustrates class-level differences in the taxonomic composition of the samples:
