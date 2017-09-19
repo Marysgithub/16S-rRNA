@@ -1,0 +1,46 @@
+群体生态学兴趣广泛。不仅关注alpha多样性，还关注beta多样性
+
+beta多样性代表了种群组成的差异。 输出文件包括方差，空矩阵（比较每一对样本的距离和差异性）， 主坐标分析（PCoA), 层级聚类
+
+Qiime很强大，很多指标都能算
+
+beta_diversity.py -s
+
+Known metrics are: abund_jaccard, 
+binary_chisq, binary_chord, binary_euclidean, binary_hamming, binary_jaccard, binary_lennon, 
+binary_ochiai, binary_otu_gain, binary_pearson, binary_sorensen_dice, bray_curtis, bray_curtis_faith, 
+bray_curtis_magurran, canberra, chisq, chord, euclidean, gower, hellinger, kulczynski, 
+manhattan, morisita_horn, pearson, soergel, spearman_approx, specprof, 
+unifrac, unifrac_g, unifrac_g_full_tree, unweighted_unifrac, unweighted_unifrac_full_tree, 
+weighted_normalized_unifrac, weighted_unifrac
+
+
+工作流程：
+
+beta_diversity_through_plots.py
+
+工作步骤：
+
+1. Rarefy OTU table to remove sampling depth heterogeneity 
+去除样本差异性
+single_rarefaction.py
+
+2. Compute beta diversity 
+计算beta多样性
+beta_diversity.py
+
+3. Run Principal Coordinates Analysis
+主坐标分析
+principal_coordinates.py
+
+4. Generate Emperor PCoA plots
+出图
+make_emperor.py
+
+平均深度。。。不知道是多少啊
+
+
+
+
+
+
