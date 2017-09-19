@@ -27,4 +27,9 @@ These are only used if the user passed --master_tree full.
 8.Compare rarefied PCoA plots from each rarefied distance matrix (make_emperor.py).
 比较rarefied 距离矩阵的主坐标图
 
-我的：
+我的：jack$ jackknifed_beta_diversity.py -i otus/otu_table.biom -t otus/rep_set.tre -m mapping.txt -o jack -e 110
+
+依然报错是常态：
+ValueError: The number of observations cannot be determined on an empty distance matrix.
+
+出来个空矩阵，估计还是mapping的锅
