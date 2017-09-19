@@ -44,6 +44,15 @@ Step 4. Generate alpha rarefaction plots
 
 绘图，每个曲线代表了一个样本。 然后根据mapping文件来分组。
 
+我的：
+(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ alpha_rarefaction.py -i otus/otu_table.biom -m mapping.txt -o arare -p script/alpha_params.txt -t otus/rep_set.tre 
+
+
+报错是常态。。
+ValueError: max() arg is an empty sequence
+
+
+
 
 
 
