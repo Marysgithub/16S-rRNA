@@ -39,6 +39,15 @@ make_emperor.py
 
 平均深度。。。不知道是多少啊
 
+我的：
+(qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ beta_diversity_through_plots.py -i otus/otu_table.biom -m mapping.txt -o bdiv_even146 -t otus/rep_set.tre -e 146
+
+继续报错是常态
+Error in make_emperor.py: None of your sample identifiers match between the mapping file and the coordinates file. 
+Verify you are using a coordinates file and a mapping file that belong to the same dataset.
+
+还是mapping文件有问题。。
+
 
 
 
