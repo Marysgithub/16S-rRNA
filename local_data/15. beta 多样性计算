@@ -25,19 +25,40 @@ beta_diversity_through_plots.py
 去除样本差异性
 single_rarefaction.py
 
+Since all samples have at least 146 sequences, a rarefaction level of 146 (specified by -e 146 above) allows us to compare all 9 samples at equal sequencing depth. 
+Any samples containing fewer than 146 sequences would have been removed from these beta diversity analyses.
+从biom summarize-table 部分查看样本含有的最少序列
+
+
+
+
 2. Compute beta diversity 
 计算beta多样性
 beta_diversity.py
+使用算法： weighted and unweighted UniFrac
+
+生成的un/weighted_unifrac_dm.txt 文件用作进一步的可视化
+
+
 
 3. Run Principal Coordinates Analysis
 主坐标分析
 principal_coordinates.py
+样本间最大差异用第一坐标表示，第二差异用第二坐标表示。是将样本的距离矩阵转换为正交坐标轴a transformation that maps the samples present in the distance matrix to a new set of orthogonal axes 
+
 
 4. Generate Emperor PCoA plots
 出图
 make_emperor.py
 
-平均深度。。。不知道是多少啊
+相同的处理用相同的颜色标识
+
+
+
+
+
+
+平均深度。。。不知道是多少，在biom summarize-table部分查？
 
 我的：
 (qiime1) mary@administrator-ThinkStation-P710:~/myproj_1/16s_own_scallop$ beta_diversity_through_plots.py -i otus/otu_table.biom -m mapping.txt -o bdiv_even146 -t otus/rep_set.tre -e 146
@@ -47,6 +68,9 @@ Error in make_emperor.py: None of your sample identifiers match between the mapp
 Verify you are using a coordinates file and a mapping file that belong to the same dataset.
 
 还是mapping文件有问题。。
+
+
+
 
 
 
