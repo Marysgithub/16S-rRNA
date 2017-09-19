@@ -1,0 +1,62 @@
+Compute alpha diversity and generate alpha rarefaction plots
+
+群体生态学常着眼于样本间/内的alpha计算。
+
+工作流程： alpha_rarefaction.py
+
+工作步骤：
+1. 生成 rarefied OTU 表格
+   multiple_rarefactions.py
+  
+2.计算每个rarefied OTU表的 alpha多样性
+   alpha_diversity.py
+
+3. 校验alpha多样性结果
+   collate_alpha.py
+
+4. 生成alpha rarefaction 图
+   make_rarefaction_plots.py
+   
+需要注意的是，-m Metrics 默认设置是 PD_whole_tree, chao1, observed_otus
+如果想要计算Shannon Index, 就需要另外创建参数文件
+可命名为 alpha_params.txt,内容为：alpha_diversity: metrics shannon, PD_whole_tree, chao1, observed_outs
+
+详细步骤解读：
+
+Step 1. Generate rarefied OTU tables
+
+生成的文件目录为 arare/rarefaction 
+
+在集成命令下这一步骤的结果文件是被删除的
+
+Step 2. Compute measures of alpha diversity for each rarefied OTU table
+
+alpha多样性指数，描述了单个样本的丰度和均匀度。可以计算二十个不同的多样性指标。默认计算三个指标：
+Chao1, Observed OTUs, 和 Phylogenetic Diversity.
+
+生成的文件目录为 arare/alpha_div/ 同样，为了节省空间，使用集成命令的时候这一步的结果会被删除。
+
+Step 3. Collate alpha diversity results
+
+指数排序表
+
+Step 4. Generate alpha rarefaction plots
+
+绘图，每个曲线代表了一个样本。 然后根据mapping文件来分组。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
