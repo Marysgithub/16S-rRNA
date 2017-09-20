@@ -1,0 +1,31 @@
+1. 文献
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4331581/
+
+2. 处理情况
+
+ 22 °C (warm-acclimated) warm-acclimated (WW),
+
+ 
+ Ribosomal 16S rDNA V1-V2 region was amplified with a barcoded universal bacterial 27F 
+ (CTATGCGCCTTGCCAGCCCGCTCAG-MID-TCAGAGTTTGATCMTGGCTCAG)-
+ 338R (CGTATCGCCTCCCTCGCGCCATCAG-MID-TGCTGCCTCCCGTAGGAGT) primer pair. 
+ 
+ Forward primers were marked with barcodes MID02 and MID03 and the reverse primers with MID01-MID98 (excluding MID09 and MID12). 
+ 
+ 注意这里的barcode是MID02
+ Each individual PCR including negative controls was coded by a unique combination of forward and reverse MIDs
+ 
+ 本实验是双端barcode。但是依然无法看出barcode. 
+ 
+ Raw demultiplexed sequence data 
+ 注意这里下载的是已经demultiplexed的数据，编号： ERR458035 ERR457926 ERR457927
+ are available at European Nucleotide Archive under the study accession number PRJEB5702 (sample accession numbers ERR457899–ERR458074).
+ 
+ 
+ 
+ 
+ 扩展阅读：
+ 
+ http://blog.csdn.net/woodcorpse/article/details/76944391
+ http://mp.weixin.qq.com/s/MJWyUzeBZ7WJQhpAGX6Fgg
