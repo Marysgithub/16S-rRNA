@@ -7,3 +7,6 @@ The tree obtained can be visualized with programs such as FigTree, which was use
 #对Newick文件可视化的看树软件有三种，其中之一是FigTree
 
 下载安装FigTree, 用java打开API，导入tre图，得到的是一张硕大无比的黑乎乎的无根树？问号脸~
+
+20170927反馈：
+其实这个无根树反映的就是不同菌种的聚类和分支。看谁家族大，根系深。
