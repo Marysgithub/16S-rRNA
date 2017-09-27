@@ -43,3 +43,8 @@ Domain, Kingdom, Phylum, Class纲, Order, Family, Genus, Species,
 1. 弄明白12位的barcode到底在哪看，从解析文件里可以看到6bp， 而且不同样本的barcode都不一样
 2. 在第一步解决的基础上进行split样本拆分，从而能形成可比较的柱形图。
 3. 暂时可以先用单样本把后面的多样性分析走完。了解过程先。
+
+20170927问题解决反馈：
+1. barcode还是别瞎猜了，谁测序谁知道
+2. 将water两个样本和intestine的两个样本合并为一个fasta进行分析
+3. 用Xming解决了API远端显示的问题后，绘图完成
