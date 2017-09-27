@@ -33,3 +33,8 @@ IndexError: list index out of range
 A PDF file is created as taxa_summary/otu_table_L3_heatmap.pdf. 
 The first four samples are from fasted mice and the last five are from controls. 
 This clearly illustrates class-level differences in the taxonomic composition of the samples:
+
+
+20170927反馈：
+同样是Xming设置好了，mapping文件的样本名改好了。就画出来了。想简单可以画L2的。想复杂可以看L6的,不过L6估计什么也看不清了。太密。
+Xming设置在CSDN上。
