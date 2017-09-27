@@ -28,3 +28,7 @@ GCAAACAGGATTAGAAACCCGGGTAGTCC
 
 这样就会在otu目录下生成otu_networks文件夹
 将txt节点文件导入cytoscape，生成网络图，不过没看出什么来
+
+
+20170927反馈：
+好像把这个网络图和进化树的作用搞混了，这个才是看哪个OTU家族成员多，分支广？
