@@ -52,6 +52,10 @@ Step 4. Generate alpha rarefaction plots
 ValueError: max() arg is an empty sequence
 
 
+20170927解决报错反馈：
+把mapping里的样本名改成和输入文件一致即可。所以说mapping文件是关键。
+
+
 
 
 
